@@ -1,0 +1,241 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* RTL支持 - 为阿拉伯语等从右到左的语言 */
+html[dir="rtl"] body {
+    text-align: right;
+}
+
+body {
+    font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background-color: #f7f3e9; /* 淡雅米色背景 */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* 语言选择器样式 */
+.language-selector {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+#language-label {
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+#language-select {
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+#language-select:focus {
+    border-color: #c8171e;
+    outline: none;
+}
+
+/* RTL支持 - 为阿拉伯语等从右到左的语言 */
+html[dir="rtl"] .language-selector {
+    justify-content: flex-start;
+}
+
+html[dir="rtl"] #language-label {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+/* 页眉样式 */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #c8171e; /* 中国红色调边框 */
+}
+
+h1 {
+    color: #c8171e; /* 中国红 */
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* 主要内容区域 */
+main {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* 表单样式 */
+.input-section {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #444;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #c8171e;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 23, 30, 0.2);
+}
+
+button {
+    background-color: #c8171e; /* 中国红 */
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #a01318;
+}
+
+/* 加载动画 */
+.loading {
+    display: none;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #c8171e;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 结果区域 */
+.results-section {
+    display: none;
+    margin-top: 2rem;
+}
+
+.results-section h2 {
+    color: #c8171e;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.name-card {
+    background-color: #fff9f0;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.name-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chinese-name {
+    font-size: 2rem;
+    color: #c8171e;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.meaning {
+    margin-bottom: 1rem;
+}
+
+.meaning h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.meaning p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    color: #777;
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .results-container {
+        grid-template-columns: 1fr;
+    }
+}
