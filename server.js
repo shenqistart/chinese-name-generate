@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const path = require('path');
+// 加载环境变量配置
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,14 +14,26 @@ app.use(cors());
 // 解析JSON请求体
 app.use(express.json());
 
+// 确定当前环境
+const isProduction = process.env.NODE_ENV === 'production';
+
+// API基础路径，在生产环境中可能需要调整
+const API_BASE_PATH = isProduction ? '/api' : '';
+
 // 提供静态文件
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname)));
+
+// 添加详细日志记录
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
 
 // API密钥
 const API_KEY = 'c3730dc2-d31a-4f41-91aa-7193629920e9';
 
 // 处理生成中文名的请求
-app.post('/generate-name', async (req, res) => {
+app.post(`${API_BASE_PATH}/generate-name`, async (req, res) => {
   try {
     const { englishName, language = 'zh' } = req.body;
     console.log(`Processing request for ${englishName} in language: ${language}`);
@@ -68,7 +82,7 @@ app.post('/generate-name', async (req, res) => {
 
     // 调用DeepSeek R1 API
     // 使用统一的用户提示词，只传递英文名和语言参数
-    const userPrompt = `我的英文名是 ${englishName}，请给我生成三个有趣的中文名，并用${language}语言解释每个名字的寓意。`
+    const userPrompt = `我的名字是 ${englishName}，请给我生成三个有趣的中文名，并用${language}语言解释每个名字的寓意。`
     
     const response = await axios.post(
       'https://ark.cn-beijing.volces.com/api/v3/chat/completions',

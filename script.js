@@ -72,7 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
      * @returns {Promise<Object>} - 包含生成的中文名的对象
      */
     async function generateChineseNames(englishName) {
-        const response = await fetch('/generate-name', {
+        // 确定API基础路径
+        const apiBasePath = window.location.hostname === 'localhost' ? '' : '/api';
+        
+        const response = await fetch(`${apiBasePath}/generate-name`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
